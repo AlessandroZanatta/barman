@@ -12,6 +12,7 @@
                   [ --help ]
                   [ { { -v | --verbose } | { -q | --quiet } } ]
                   [ { -t | --test } ]
+                  [ --skip-bucket-checks ]
                   [ --cloud-provider { aws-s3 | azure-blob-storage | google-cloud-storage } ]
                   [ --endpoint-url ENDPOINT_URL ]
                   [ { -P | --aws-profile } AWS_PROFILE ]
@@ -30,12 +31,12 @@ Postgres cluster. By default, the check will succeed if the WAL archive is empty
 the target bucket is not found. Any other conditions will result in a failure.
 
 .. note::
-  The ``barman-cloud-check-wal-archive`` command performs an initial ``HeadBucket`` call
+  By default, the ``barman-cloud-check-wal-archive`` command performs an initial ``HeadBucket`` call
   to verify whether the target bucket already exists in the S3 storage. If the bucket
   does not exist, the command will attempt to automatically create it.
 
   This is the only Barman command that performs these operations (bucket existence check
-  and automatic creation).
+  and automatic creation). These operations can be skipped using the ``--skip-bucket-checks`` flag.
 
 .. note::
   For GCP, only authentication with ``GOOGLE_APPLICATION_CREDENTIALS`` env is supported.
@@ -64,6 +65,10 @@ the target bucket is not found. Any other conditions will result in a failure.
 
 ``-t`` / ``--test``
   Test cloud connectivity and exit.
+
+``--assume-bucket-exists``
+  Assumes the bucket exists and can be accessed by the executing principal, skipping 
+  connectivity test and bucket creation.
 
 ``--cloud-provider``
   The cloud provider to use as a storage backend.
