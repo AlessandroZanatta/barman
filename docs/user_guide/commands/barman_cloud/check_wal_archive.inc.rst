@@ -12,7 +12,7 @@
                   [ --help ]
                   [ { { -v | --verbose } | { -q | --quiet } } ]
                   [ { -t | --test } ]
-                  [ --skip-bucket-checks ]
+                  [ --assume-bucket-exists ]
                   [ --cloud-provider { aws-s3 | azure-blob-storage | google-cloud-storage } ]
                   [ --endpoint-url ENDPOINT_URL ]
                   [ { -P | --aws-profile } AWS_PROFILE ]
@@ -36,7 +36,7 @@ the target bucket is not found. Any other conditions will result in a failure.
   does not exist, the command will attempt to automatically create it.
 
   This is the only Barman command that performs these operations (bucket existence check
-  and automatic creation). These operations can be skipped using the ``--skip-bucket-checks`` flag.
+  and automatic creation). These operations can be skipped using the ``--assume-bucket-exists`` flag.
 
 .. note::
   For GCP, only authentication with ``GOOGLE_APPLICATION_CREDENTIALS`` env is supported.
